@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1 class="display-4 text-center my-3">마스크를 잠시 내리고 얼굴을 인식시켜 주세요</h1>
+<div class='text-center'>
+    <img id='recognize' src="{% url 'survey:streaming' %}" width='640' height='480'>
+</div>
+<script>
+    var timer = setInterval(function(){
+        axios.get('/survey/recognize2')
+        .then(response => {
+            const {student_id,confidence} = response.data
+            if(confidence > 19){
+                location.href="http://127.0.0.1:8080/survey/temperature/"
+                }
+            
+            })
+        },2000)
+</script>
+{%endblock%}

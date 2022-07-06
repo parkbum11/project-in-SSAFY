@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1 class="display-4 text-center my-3">공지</h1>
+{% for article in articles%}
+<h3>{{article.title}}</h3>
+<hr>
+<h3 style="white-space: pre-line">{{article.content}}</h3>
+<br>
+{% endfor %}
+<div class='text-center'>
+<a href="{% url 'survey:recognize'%}" class='btn btn-primary btn-lg'>확인</a>
+</div>
+{%endblock%}

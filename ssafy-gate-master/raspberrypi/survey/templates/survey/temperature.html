@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1 class="display-4 text-center my-3">반갑습니다 {{student.name}} 님</h1>
+<h1 id='dist' class='text-center'></h1>
+<h1 id='sec' class='text-center display-3 text-success'></h1>
+
+<script>
+    const student_id = {{student.id}}
+    console.log(student_id)
+    var timer = setInterval(function(){
+        axios.get('/survey/temperature2')
+        .then(response => {
+            const {temp,cnt} = response.data
+            console.log(temp)
+            console.log(cnt)
+            if(temp){
+                const distance = document.querySelector('#dist').innerText = '온도를 측정중입니다 3초간 기다려주세요.'
+                const second = document.querySelector('#sec').innerText = `${cnt}`
+                }
+            else{
+                const distan = document.querySelector('#dist').innerText = '3~5cm 이마를 가까이 대주세요'
+                const second = document.querySelector('#sec').innerText = ''
+                }
+            if(cnt > 2){
+                location.href=`http://127.0.0.1:8080/survey/${student_id}/${temp}/survey/`
+                }
+            })
+        },1000)
+</script>
+
+{%endblock%}

@@ -1,0 +1,9 @@
+{% extends 'base.html'%}
+{% block content %}
+<h1 class="display-4 text-center text-warning my-3">WARNING</h1>
+<h3 class='text-center'>you are over 37.5<h3>
+<h5 class='text-center'>one more time check after 1min or call pro</h5>
+<div class='text-center'>
+    <a href="{% url 'survey:notice'%}" class='btn btn-primary btn-lg'>confirm</a>
+</div>
+{% endblock %}
